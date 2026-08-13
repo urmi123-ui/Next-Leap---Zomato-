@@ -1,0 +1,16 @@
+# Environment variables
+.env
+
+# Python caching & testing
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# IDE files
+.vscode/
+.idea/
+.gemini/
+antigravity-ide/
+*.log

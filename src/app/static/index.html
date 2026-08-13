@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato AI – Premium Restaurant Recommendations</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Glow Elements -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand">
+                <div class="logo-box">
+                    <i data-lucide="utensils" class="logo-icon"></i>
+                </div>
+                <span class="brand-text">zomato <span class="brand-ai">AI</span></span>
+            </div>
+            
+            <div class="header-right">
+                <div class="location-badge">
+                    <i data-lucide="map-pin"></i>
+                    <span>Bangalore, IN</span>
+                </div>
+                <div class="avatar">
+                    <span>U</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-main">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="pill">
+                <i data-lucide="sparkles"></i>
+                <span>Introducing Zomato AI Curator v1.0</span>
+            </div>
+            <h1 class="hero-title">Discover the Art of <span class="gradient-text">Perfect Dining</span></h1>
+            <p class="hero-subtitle">
+                An intelligent culinary matching engine that understands your taste, mood, and budget. Powered by deep data and Llama 3.1.
+            </p>
+        </section>
+
+        <!-- Preference Selector Card -->
+        <section class="preferences-section">
+            <div class="prefs-card">
+                <div class="prefs-header">
+                    <i data-lucide="sliders" class="pref-title-icon"></i>
+                    <div>
+                        <h2>Customize Your Dining Taste</h2>
+                        <p>Adjust parameters to guide the AI recommendation engine</p>
+                    </div>
+                </div>
+
+                <form id="preferences-form" class="prefs-form">
+                    <div class="form-grid">
+                        <!-- Location Select -->
+                        <div class="form-group">
+                            <label for="location">
+                                <i data-lucide="map-pin"></i> Location
+                            </label>
+                            <div class="select-wrapper">
+                                <select id="location" required>
+                                    <option value="" disabled selected>Select location...</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Cuisine Select -->
+                        <div class="form-group">
+                            <label for="cuisine">
+                                <i data-lucide="soup"></i> Cuisine
+                            </label>
+                            <div class="select-wrapper">
+                                <select id="cuisine" required>
+                                    <option value="" disabled selected>Select cuisine...</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Min Rating -->
+                        <div class="form-group">
+                            <label for="min-rating">
+                                <i data-lucide="star"></i> Minimum Rating: <span id="rating-val">4.0</span>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="min-rating" min="0.0" max="5.0" step="0.1" value="4.0">
+                                <div class="slider-track-fill"></div>
+                            </div>
+                        </div>
+
+                        <!-- Number of Picks -->
+                        <div class="form-group">
+                            <label for="top-k">
+                                <i data-lucide="list-ordered"></i> Recommendations Count: <span id="top-k-val">3</span>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="top-k" min="1" max="5" step="1" value="3">
+                                <div class="slider-track-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Budget Selector (Premium Custom Cards) -->
+                    <div class="form-group budget-group">
+                        <label><i data-lucide="indian-rupee"></i> Budget Tier</label>
+                        <div class="budget-selector">
+                            <input type="radio" name="budget" id="budget-low" value="low">
+                            <label for="budget-low" class="budget-card">
+                                <span class="budget-icon">₹</span>
+                                <span class="budget-label">Pocket Friendly</span>
+                                <span class="budget-desc">Great taste, light budget</span>
+                            </label>
+
+                            <input type="radio" name="budget" id="budget-medium" value="medium" checked>
+                            <label for="budget-medium" class="budget-card">
+                                <span class="budget-icon">₹₹</span>
+                                <span class="budget-label">Mid Range</span>
+                                <span class="budget-desc">Perfect balance of cost & ambiance</span>
+                            </label>
+
+                            <input type="radio" name="budget" id="budget-high" value="high">
+                            <label for="budget-high" class="budget-card">
+                                <span class="budget-icon">₹₹₹</span>
+                                <span class="budget-label">Fine Dining</span>
+                                <span class="budget-desc">Premium culinary experiences</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Vibe / Special Notes -->
+                    <div class="form-group full-width">
+                        <label for="additional-preferences">
+                            <i data-lucide="smile"></i> Special Vibe & Mood Notes
+                        </label>
+                        <div class="input-wrapper">
+                            <i data-lucide="search" class="search-input-icon"></i>
+                            <input type="text" id="additional-preferences" 
+                                placeholder="e.g. romantic rooftop, live music, pet friendly, authentic woodfired pizza...">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" id="submit-btn" class="cta-button">
+                            <span>Find My Perfect Restaurant</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Loader Section -->
+        <section id="loader" class="loader-section hidden">
+            <div class="loading-box">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+                <h3 id="loader-message">Zomato AI is analyzing local spots...</h3>
+                <p>Querying real Zomato data for perfect matches</p>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="results-section hidden">
+            <!-- Results Header -->
+            <div class="results-meta">
+                <h2 class="section-title"><i data-lucide="award"></i> Curated Selections</h2>
+                <span id="results-count" class="results-count-badge">3 options curated</span>
+            </div>
+
+            <!-- AI Summary Callout -->
+            <div class="ai-summary-card">
+                <div class="ai-avatar">
+                    <i data-lucide="sparkles"></i>
+                </div>
+                <div class="ai-content">
+                    <span class="ai-badge">ZOMATO AI INSIGHT</span>
+                    <p id="ai-summary-text">Loading insights...</p>
+                </div>
+            </div>
+
+            <!-- Recommendation Grid -->
+            <div id="recommendations-grid" class="cards-grid">
+                <!-- Cards will be dynamically injected here -->
+            </div>
+        </section>
+
+        <!-- Initial/Empty States -->
+        <section id="empty-state" class="empty-state-section">
+            <div class="empty-state-card">
+                <div class="empty-icon-container">
+                    <i data-lucide="compass" class="empty-icon"></i>
+                </div>
+                <h3>Let Zomato AI Guide Your Next Meal</h3>
+                <p>Specify your preferred location, cuisine, and budget above. Our LLM curation engine will analyze matching restaurants and outline exactly why they match your mood.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <span class="footer-brand">zomato <span class="brand-ai">AI</span></span>
+                <p>© 2026 Zomato AI. All rights reserved. Driven by real-world Hugging Face datasets & Groq Llama 3.1 intelligence.</p>
+            </div>
+            <div class="footer-right">
+                <a href="#preferences-form">Search</a>
+                <a href="https://huggingface.co/datasets/ManikaSaini/zomato-restaurant-recommendation" target="_blank">Dataset</a>
+                <a href="/docs" target="_blank">API Docs</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
