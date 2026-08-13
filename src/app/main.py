@@ -274,6 +274,7 @@ div[data-baseweb="popover"] li[aria-selected="true"]{background:rgba(226,55,68,.
 """
 
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:8000")
 
 def rank_badge(rank):
     icons={1:"🥇",2:"🥈",3:"🥉"}
@@ -342,7 +343,7 @@ def main():
     st.markdown(CSS, unsafe_allow_html=True)
 
     # NAV
-    st.markdown("""
+    st.markdown(f"""
     <div class="page-top">
     <nav class="zomato-nav">
       <div style="display:flex;align-items:center;">
@@ -356,7 +357,7 @@ def main():
       </div>
     </nav>
     <div style="background: rgba(226, 55, 68, 0.12); border: 1px solid rgba(226, 55, 68, 0.3); padding: 12px 24px; border-radius: 12px; margin: 20px 40px 0; text-align: center; font-family: 'Inter', sans-serif;">
-      ✨ <strong>Try our new Premium Web App!</strong> Experience smooth glassmorphism, responsive sliders, and micro-animations at <a href="http://localhost:8000" target="_blank" style="color: #ff8f96; text-decoration: underline; font-weight: 700;">http://localhost:8000</a>.
+      ✨ <strong>Try our new Premium Web App!</strong> Experience smooth glassmorphism, responsive sliders, and micro-animations at <a href="{FRONTEND_URL}" target="_blank" style="color: #ff8f96; text-decoration: underline; font-weight: 700;">{FRONTEND_URL}</a>.
     </div>
     """, unsafe_allow_html=True)
 
@@ -392,10 +393,10 @@ def main():
     st.markdown('<div class="wrap">', unsafe_allow_html=True)
 
     if not backend_healthy:
-        st.markdown("""
+        st.markdown(f"""
         <div class="bar-err">
           ⚠️ <div><strong>Backend offline</strong> — Cannot reach 
-          <code style="background:rgba(226,55,68,.15);padding:2px 6px;border-radius:4px;font-size:12px;">http://localhost:8000</code>.
+          <code style="background:rgba(226,55,68,.15);padding:2px 6px;border-radius:4px;font-size:12px;">{BACKEND_URL}</code>.
           Start the backend server first.</div>
         </div>""", unsafe_allow_html=True)
 

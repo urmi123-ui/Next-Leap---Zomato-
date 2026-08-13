@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, status
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 import os
 from app.models.domain import UserPreferences, RecommendationResponse
 from app.data.repository import RestaurantRepository
@@ -11,6 +12,16 @@ app = FastAPI(
     description="Backend API for filtering and ranking restaurant recommendations using Groq LLM.",
     version="1.0.0"
 )
+
+# Enable CORS for frontend deployments (like Vercel)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins; can be restricted to Vercel URLs in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Initialize data store and orchestrator
 try:
