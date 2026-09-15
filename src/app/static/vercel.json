@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://zomato-recommendation-backend.onrender.com/api/:path*"
+      "destination": "https://next-leap-zomato.onrender.com/api/:path*"
     }
   ]
 }
